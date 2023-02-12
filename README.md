@@ -17,9 +17,7 @@ This project uses TSDX setup which is meant for developing utilities that can be
 
 `yarn test`
 
-Before running tests ensure you have `proofs` folder in the project directory.
-And make sure you have zstd package on your machine.
-
+For running particular test files you can do `yarn test test/file.test.ts`.
 ---
 
 ## Publishing NPM package
