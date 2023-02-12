@@ -1,7 +1,7 @@
 import { Grammar, Transition } from "../src/index";
 import { Production } from "../src/grammar/Production";
 
-describe('blah', () => {
+describe('Grammar', () => {
   let productions: Production[] = [];
   let T: Map<string, string[]>;
   let G: Grammar;
@@ -41,7 +41,7 @@ describe('blah', () => {
   });
 
   it("toFiniteAutomaton", () => {
-    const FA = G.toFiniteAutomation();
+    const FA = G.toFiniteAutomaton();
     const transitions = [
       new Transition('S', 'a', 'B'),
       new Transition('S', 'b', 'B'),
