@@ -17,7 +17,9 @@ This project uses TSDX setup which is meant for developing utilities that can be
 
 `yarn test`
 
-For running particular test files you can do `yarn test test/file.test.ts`.
+
+For running particular test files you can use `yarn test test/file.test.ts`.
+
 ---
 
 ## Publishing NPM package
