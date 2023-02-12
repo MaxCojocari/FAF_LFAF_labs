@@ -48,7 +48,7 @@ export class Grammar {
     return word;
   }
 
-  public toFiniteAutomation(): FiniteAutomaton {
+  public toFiniteAutomaton(): FiniteAutomaton {
     // set of states
     let Q = [...this.nonTerminalSymbols].concat(['X']);
 
