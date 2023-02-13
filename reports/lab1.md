@@ -22,7 +22,7 @@ A deterministic finite automaton is a 5-tuple $(Q, \Sigma, \delta, q_0, F)$ wher
 
 - $Q$ is a finite set of states;
 - $\Sigma$ is an input alphabet;
-- $\delta: Q \times \to \Sigma $ is a transition function.
+- $\delta: Q \times \Sigma \to Q$ is a transition function.
 - $q_0 \in Q$ is the initial state.
 - $F \subseteq Q$ is a set of accepting states (or final states). 
 
