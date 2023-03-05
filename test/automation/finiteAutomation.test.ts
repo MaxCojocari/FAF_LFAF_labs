@@ -1,4 +1,4 @@
-import { FiniteAutomaton, Transition } from "../src";
+import { FiniteAutomaton, Transition } from "../../src";
 
 describe("FiniteAutomaton", () => {
   let FA: FiniteAutomaton;

@@ -3,7 +3,7 @@ import {
   Production,
   Transition,
   GrammarToAutomatonConverter
-} from "../src";
+} from "../../src";
 
 describe("GrammarToAutomatonConverter", () => {
   let productions: Production[] = [];

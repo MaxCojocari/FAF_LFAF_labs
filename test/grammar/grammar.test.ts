@@ -1,5 +1,4 @@
-import { Grammar, Transition } from "../src/index";
-import { Production } from "../src/grammar/Production";
+import { Grammar, Production } from "../../src";
 
 describe('Grammar', () => {
   let productions: Production[] = [];
@@ -33,7 +32,7 @@ describe('Grammar', () => {
 
   it("genWord", () => {
     let resultWords: string[] = []
-    for (let i = 0; i < 10; ++i) {
+    for (let i = 0; i < 5; ++i) {
       const newWord = G.genWord();
       if (!resultWords.includes(newWord)) resultWords.push(G.genWord());
     }

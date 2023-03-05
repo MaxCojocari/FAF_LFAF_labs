@@ -2,7 +2,7 @@ import {
   Transition,
   FiniteAutomaton,
   DFA
-} from "../src/index";
+} from "../../src/index";
 const fs = require("fs");
 
 describe("DFA", () => {

@@ -4,7 +4,7 @@ import {
   FiniteAutomaton,
   NFAConvertor,
   Transition
-} from "../src";
+} from "../../src";
 
 describe("NFAConvertor", () => {
   let Q: string[];

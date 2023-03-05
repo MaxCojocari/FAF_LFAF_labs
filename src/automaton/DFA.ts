@@ -9,7 +9,7 @@ export class DFA {
     this.transitionTable = DFA.getTransitionTable(FA);
   }
 
-  // returns true if this is DFA, overwise false
+  // returns true if this is DFA, otherwise false
   public static isDFA(FA: FiniteAutomaton): boolean {
     let transitionLabels: Map<string, string[]> = new Map<string, string[]>();
 
@@ -21,7 +21,8 @@ export class DFA {
         let labels = transitionLabels.get(t.current);
 
         // if there are transitions with same init state and 
-        // transition label, then it's not DFA
+        // transition label, then it's not DFA 
+        // (same transitions go to different states)
         if (labels?.includes(t.transitionLabel))
           return false;
 
@@ -35,11 +36,10 @@ export class DFA {
         transitionLabels.set(t.current, [t.transitionLabel]);
       }
     }
-
     return true;
   }
 
-  // returns true if finite automaton is NFA, overwise false
+  // returns true if finite automaton is NFA, otherwise false
   public static isNFA(FA: FiniteAutomaton): boolean {
     return !this.isDFA(FA);
   }

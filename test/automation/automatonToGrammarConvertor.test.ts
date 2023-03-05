@@ -3,7 +3,7 @@ import {
   FiniteAutomaton,
   Production,
   AutomatonToGrammarConvertor
-} from "../src";
+} from "../../src";
 
 describe("AutomatonToGrammarConvertor", () => {
   let Q: string[];

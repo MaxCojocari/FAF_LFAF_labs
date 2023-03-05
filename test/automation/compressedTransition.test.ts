@@ -1,4 +1,4 @@
-import { CompressedTransition } from "../src";
+import { CompressedTransition } from "../../src";
 
 describe("CompressedTransition", () => {
   let compressedTransition: CompressedTransition;

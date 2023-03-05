@@ -1,4 +1,8 @@
-import { Grammar, GrammarChecker, Production } from "../src/index";
+import {
+  Grammar,
+  GrammarChecker,
+  Production
+} from "../../src";
 
 describe('GrammarChecker', () => {
   let productions: Production[];
