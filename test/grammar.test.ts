@@ -33,28 +33,10 @@ describe('Grammar', () => {
 
   it("genWord", () => {
     let resultWords: string[] = []
-    for (let i = 0; i < 5; ++i) {
+    for (let i = 0; i < 10; ++i) {
       const newWord = G.genWord();
       if (!resultWords.includes(newWord)) resultWords.push(G.genWord());
     }
     console.log(resultWords);
-  });
-
-  it("toFiniteAutomaton", () => {
-    const FA = G.toFiniteAutomaton();
-    const transitions = [
-      new Transition('S', 'a', 'B'),
-      new Transition('S', 'b', 'B'),
-      new Transition('B', 'b', 'D'),
-      new Transition('D', 'b', 'X'),
-      new Transition('D', 'a', 'D'),
-      new Transition('B', 'c', 'B'),
-      new Transition('B', 'a', 'S')
-    ]
-    expect(FA.setOfStates).toEqual([...G.nonTerminalSymbols].concat(['X']));
-    expect(FA.alphabet).toEqual(G.terminalSymbols);
-    expect(FA.transitions).toEqual(transitions);
-    expect(FA.intialState).toEqual('S');
-    expect(FA.finalState).toEqual('X');
   });
 });

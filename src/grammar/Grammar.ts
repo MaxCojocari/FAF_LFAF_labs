@@ -1,5 +1,5 @@
-import { FiniteAutomaton } from "../automation/FiniteAutomaton";
-import { Transition } from "../automation/Transition";
+import { FiniteAutomaton } from "../automaton/FiniteAutomaton";
+import { Transition } from "../automaton/Transition";
 import { getRandomInt } from "../utils";
 import { Production } from "./Production";
 
@@ -48,54 +48,7 @@ export class Grammar {
     return word;
   }
 
-  public toFiniteAutomaton(): FiniteAutomaton {
-    // set of states
-    let Q = [...this.nonTerminalSymbols].concat(['X']);
 
-    // alphabet
-    let sigma = this.terminalSymbols;
-
-    // transition function
-    let delta: Transition[] = [];
-    this.productions.forEach(p => {
-      const index = p.right.search(/[A-Z]/);
-
-      // final state
-      if (index == -1) {
-        delta.push(
-          new Transition(p.left, p.right, 'X')
-        )
-
-        // left regular grammar
-      } else if (index == 0) {
-        delta.push(
-          new Transition(
-            p.left,
-            p.right.slice(1),
-            p.right[0] ? p.right[0] : '',
-          )
-        )
-
-        // right regular grammar
-      } else {
-        delta.push(
-          new Transition(
-            p.left,
-            p.right.slice(0, index),
-            p.right[index] ? p.right[index] : '',
-          )
-        )
-      }
-    });
-
-    // initial state
-    let q0 = 'S'
-
-    // final state
-    let F = 'X'
-
-    return new FiniteAutomaton(Q, sigma, delta, q0, F);
-  };
 
   public getNextState(initState: string): string {
     let nextStates: any = this.transitionMap.get(initState);
