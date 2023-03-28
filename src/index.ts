@@ -8,3 +8,6 @@ export * from "./grammar/conversion/GrammarToAutomatonConverter";
 export * from "./grammar/Grammar";
 export * from "./grammar/GrammarChecker";
 export * from "./grammar/Production";
+export * from "./lexer/Lexer";
+export * from "./token/Token";
+export * from "./token/TokenStream";
