@@ -128,8 +128,8 @@ The conversion between NFA to DFA is done in `NFAConvertor` class (see `./src/au
 
 1. Create the transition table for the given NFA;
 2. Create a new transition table under possible input alphabets for the equivalent DFA;
-3. Mark the start state of the DFA by ${q_0}$ (same as the NFA);
-4. Find out the combination of states ${q_0, q_1, ..., q_n}$ for each possible input alphabet;
+3. Mark the start state of the DFA by $\{q_0\}$ (same as the NFA);
+4. Find out the combination of states $\{q_0, q_1, ..., q_n\}$ for each possible input alphabet;
 5. Each time when a new DFA state is generated under the input alphabet columns, go to step 4, otherwise go to the next step;
 6. The states which contain any of the final states of the NFA are the final states of the equivalent DFA.
 
