@@ -9,9 +9,9 @@ const REGEXP_SPECIAL_CHARS_REGEXP = new RegExp(
 
 export enum State { Parsing, String }
 
-export type TokenRegExDef = Array<[string, string]>;
+export type RawTokenDefinition = Array<[string, string]>;
 
-export type CompiledTokenDef = Array<[string, RegExp]>;
+export type CompiledTokenDefinition = Array<[string, RegExp]>;
 
 export function getRandomInt(max: number): number {
   return Math.floor(Math.random() * max);
@@ -25,8 +25,8 @@ export function unionArrays(arr1: string[], arr2: string[]): string[] {
   return [...new Set([...arr1, ...arr2])]
 }
 
-export function parseTokensDef(grammar: string): TokenRegExDef {
-  const parsedTokenDef: TokenRegExDef = [];
+export function parseTokenDefinition(tokenDefInput: string): RawTokenDefinition {
+  const parsedTokenDef: RawTokenDefinition = [];
 
   let index = -1;
   let currentNode: string | undefined;
@@ -35,8 +35,8 @@ export function parseTokensDef(grammar: string): TokenRegExDef {
 
   let buffer: string[] = [];
 
-  while (index++ < grammar.length) {
-    const char = grammar.charAt(index);
+  while (index++ < tokenDefInput.length) {
+    const char = tokenDefInput.charAt(index);
     buffer.push(char);
 
     if (state === State.String && char !== '"') {
@@ -46,7 +46,7 @@ export function parseTokensDef(grammar: string): TokenRegExDef {
     // if we consume a " that isn't preceded by a \, we're either
     // starting a string or terminating a string.
     if (char === '"') {
-      if (grammar.charAt(index - 1) !== "\\") {
+      if (tokenDefInput.charAt(index - 1) !== "\\") {
         if (state === State.String) {
           state = prevState || State.Parsing;
         } else {
@@ -68,14 +68,14 @@ export function parseTokensDef(grammar: string): TokenRegExDef {
     }
 
     if (char === ";") {
-      if (state === State.String || grammar.charAt(index - 1) === "\\") continue;
+      if (state === State.String || tokenDefInput.charAt(index - 1) === "\\") continue;
 
       buffer.pop();
 
       const part = buffer.join("").trim();
 
       if (!currentNode) {
-        throw new Error("invalid token grammar");
+        throw new Error("invalid token tokenDefInput");
       }
 
       parsedTokenDef.push([currentNode, part]);
@@ -104,12 +104,12 @@ function processRule(rawRule: string): RegExp {
   return new RegExp(`^(${ruleRegex})`);
 }
 
-export function compileTokensDef(tokenGrammar: TokenRegExDef): CompiledTokenDef {
-  const compiledGrammar: CompiledTokenDef = [];
+export function compileTokenDefinition(tokenRawDef: RawTokenDefinition): CompiledTokenDefinition {
+  const compiledTokenDef: CompiledTokenDefinition = [];
 
-  for (let [ruleName, rawRule] of tokenGrammar) {
-    compiledGrammar.push([ruleName, processRule(rawRule)]);
+  for (let [tokenType, rawRule] of tokenRawDef) {
+    compiledTokenDef.push([tokenType, processRule(rawRule)]);
   }
 
-  return compiledGrammar;
+  return compiledTokenDef;
 }

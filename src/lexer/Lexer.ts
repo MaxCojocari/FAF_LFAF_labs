@@ -1,4 +1,4 @@
-import { CompiledTokenDef } from "../utils";
+import { CompiledTokenDefinition } from "../utils";
 import { Token } from "../token/Token";
 import { TokenStream } from "../token/TokenStream";
 
@@ -19,10 +19,10 @@ function maximumMatch(matches: Record<string, RegExpMatchArray | null>) {
 }
 
 export class Lexer {
-  private tokenDef: CompiledTokenDef;
+  private tokenRules: CompiledTokenDefinition;
 
-  constructor(tokenDef: CompiledTokenDef) {
-    this.tokenDef = tokenDef;
+  constructor(tokenRules: CompiledTokenDefinition) {
+    this.tokenRules = tokenRules;
   }
 
   public tokenize(program: string): TokenStream {
@@ -34,7 +34,7 @@ export class Lexer {
     while (programBuffer) {
       const matches: Record<string, RegExpMatchArray | null> = {};
 
-      for (let [tokenName, matcher] of this.tokenDef) {
+      for (let [tokenName, matcher] of this.tokenRules) {
         matches[tokenName] = programBuffer.match(matcher);
       }
 
