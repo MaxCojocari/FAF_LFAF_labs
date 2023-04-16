@@ -1,9 +1,13 @@
 export class Production {
-  public readonly left: string;
-  public readonly right: string;
+  public left: string;
+  public right: string;
 
   public constructor(left: string, right: string) {
     this.left = left;
+    this.right = right;
+  }
+
+  public setRHS(right: string) {
     this.right = right;
   }
 }

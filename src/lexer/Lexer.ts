@@ -1,4 +1,4 @@
-import { CompiledTokenDefinition } from "../utils";
+import { CompiledTokenDefinition } from "../token/utils";
 import { Token } from "../token/Token";
 import { TokenStream } from "../token/TokenStream";
 

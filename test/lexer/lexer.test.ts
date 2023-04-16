@@ -1,4 +1,4 @@
-import { parseTokenDefinition, compileTokenDefinition } from "../../src/utils";
+import { parseTokenDefinition, compileTokenDefinition } from "../../src/token/utils";
 import { Lexer } from "../../src/lexer/Lexer";
 import * as fs from 'fs';
 
@@ -10,6 +10,6 @@ describe('Lexer', () => {
     const tokenRules = parseTokenDefinition(tokens);
     const compiledTokenRules = compileTokenDefinition(tokenRules);
     const tokenStream = new Lexer(compiledTokenRules).tokenize(program);
-    console.log(tokenStream.tokens);
+    // console.log(tokenStream.tokens);
   })
 })

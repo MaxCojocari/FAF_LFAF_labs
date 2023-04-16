@@ -36,6 +36,5 @@ describe('Grammar', () => {
       const newWord = G.genWord();
       if (!resultWords.includes(newWord)) resultWords.push(G.genWord());
     }
-    console.log(resultWords);
   });
 });

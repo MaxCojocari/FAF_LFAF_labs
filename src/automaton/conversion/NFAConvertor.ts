@@ -1,4 +1,4 @@
-import { compareArrays, unionArrays } from "../../utils";
+import { areEqual, unionArrays } from "../../utils";
 import { CompressedTransition } from "../CompressedTransition";
 import { DFA } from "../DFA";
 import { FiniteAutomaton } from "../FiniteAutomaton";
@@ -15,7 +15,7 @@ export class NFAConvertor {
 
     // push initial state in freshly created transition table
     transitionTable.push(
-      NFATable.find(state => compareArrays([NFA.intialState], state.previous)) as CompressedTransition
+      NFATable.find(state => areEqual([NFA.intialState], state.previous)) as CompressedTransition
     )
 
     let initialStatesDFA: string[][] = [];
@@ -42,7 +42,7 @@ export class NFAConvertor {
     initialStatesDFA: string[][],
     finalState: string[]
   ): boolean {
-    return initialStatesDFA.find(state => compareArrays(finalState, state)) !== undefined;
+    return initialStatesDFA.find(state => areEqual(finalState, state)) !== undefined;
   }
 
   // adds new state to the DFA transition table
@@ -59,7 +59,7 @@ export class NFAConvertor {
     // for entries in new state
     newState.forEach(state => {
       // find the corresponding row from NFA transition table
-      const row = NFATable.find(s => compareArrays(s.previous, [state]))?.final;
+      const row = NFATable.find(s => areEqual(s.previous, [state]))?.final;
       // compute the union of states
       for (let [key, value] of row as Map<string, string[]>) {
         if (!resultingFinalStates.get(key)) {
