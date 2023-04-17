@@ -50,7 +50,7 @@ describe("CNFConverter", () => {
 
 
     it("should prepare grammar for normalisation", () => {
-        expect(converter.prepareGrammarForCFN(G1));
+        expect(converter.prepareGrammarForCNF(G1));
 
         let finalProductions = [
             new Production('S', 'aB'),
@@ -82,7 +82,7 @@ describe("CNFConverter", () => {
 
     it("should rewrite in proper CNF, second case", () => {
         expect(converter.convertToCNF(G2));
-        // console.log(G2);
+        console.log(G2);
 
         let finalProductions = [
             ['S0', 'CA'],

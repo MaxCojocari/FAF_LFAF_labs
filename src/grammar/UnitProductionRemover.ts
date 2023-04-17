@@ -18,7 +18,6 @@ export class UnitProductionRemover {
 
             const transitionMap = Grammar.genTransitionMap(productions);
             const newRhs = transitionMap.get(production?.right as string)
-
             newRhs?.forEach(rhs => {
                 productions.push(new Production(production?.left as string, rhs));
             });

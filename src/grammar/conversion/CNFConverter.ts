@@ -20,16 +20,12 @@ export class CNFConverter {
 
     public convertToCNF(G: Grammar) {
         this.checkForStartSymbolInRHS(G);
-        this.prepareGrammarForCFN(G);
-        let processedProductions: Production[] = [];
-        let nonTerminalSymbols;
+        this.prepareGrammarForCNF(G);
 
-        // convertProductions to CNF
-        [nonTerminalSymbols, processedProductions] = this.convertProductionsToCNF(G);
-        processedProductions = this.sortProductions(processedProductions);
+        let [nonTerminalSymbols, processedProductions] = this.convertProductionsToCNF(G);
 
         G.setNonTerminalSymbols(nonTerminalSymbols);
-        G.setProductions(processedProductions);
+        G.setProductions(this.sortProductions(processedProductions));
         return G;
     }
 
@@ -49,7 +45,7 @@ export class CNFConverter {
         grammar.setProductions(productions as Production[]);
     }
 
-    public prepareGrammarForCFN(grammar: Grammar) {
+    public prepareGrammarForCNF(grammar: Grammar) {
         this.lambdaProductionRemover.removeLambdaProductions(grammar);
         this.unitProductionRemover.removeUnitProductions(grammar);
         this.inaccessibleSymbolRemover.removeInaccessibleSymbols(grammar);
