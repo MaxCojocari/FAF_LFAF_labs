@@ -33,15 +33,13 @@ The core implementation ideas for Chomsky Normal Form converter can be found in 
 The entire process is focused on `convertToCNF` method which does all the magic regarding the whole process of normalization. It includes
 
 - Verifying the presence of start symbol in right hand side, if yes, adding a new production $S_0 \to S$ where $S_0$ is a new start symbol;
-- Preparation of grammar before the production normalisation, i.e 
-    - removing of lambda productions;
-    - removing of unit productions;
-    - removing of inaccessible symbols;
-    - removing of non-productive symbols;
+- Grammar pre-processing before the production normalisation, i.e 
+    - removal of lambda productions;
+    - removal of unit productions;
+    - removal of inaccessible symbols;
+    - removal of non-productive symbols;
 - Normalization of productions according to CNF rules;
 - Setting components into a new, normalized grammar.
-
-There is also an aditional step of sorting productions, which resides in putting productions with $S_0$ first, then $S$, $A$, $B$, ..., in alphabetical order.
 
 ```
 public convertToCNF(G: Grammar) {
@@ -55,6 +53,8 @@ public convertToCNF(G: Grammar) {
     return G;
 }
 ```
+
+There is also an aditional step of sorting productions, which resides in putting productions with $S_0$ first, then $S$, $A$, $B$, ..., in alphabetical order.
 
 The process of grammar preparation before production normalization can be found in `prepareGrammarForCNF` method.
 
