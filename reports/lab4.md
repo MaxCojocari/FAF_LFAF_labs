@@ -42,7 +42,7 @@ The entire process is focused on `convertToCNF` method which does all the magic 
 - Setting components into a new, normalized grammar.
 
 ```
-public convertToCNF(G: Grammar) {
+public convertToCNF(G: Grammar): Grammar {
     this.checkForStartSymbolInRHS(G);
     this.prepareGrammarForCNF(G);
 
@@ -157,7 +157,7 @@ The removal of all unit productions is done by `UnitProductionRemover` class (`.
 
 The algorithm in brief:
 
-1. For all productions $A \to B$ add the new production $A \to x$, where $B \to x$ and $x \to (V_N \cup V_T)$;
+1. For all productions $A \to B$ add the new production $A \to x$, where $B \to x$ and $x \in (V_N \cup V_T)$;
 2. Remove production $A \to B$;
 3. Repeat 2nd step until all unit productions are removed.
 
@@ -194,12 +194,12 @@ The implementation for removal of all inaccessible symbols can be found in `Inac
 
 The algorithm in brief:
 
-1. Create a new set which will keep track of all accessible symbols $A_c = \{S\}$;
+1. Create a new set which will keep track of all accessible symbols $A_c = \lbrace S \rbrace$;
 
 2. For all non-terminal symbols $\beta \to A_c$ and all productions
 $\beta \to x_1, x_2, x_3, …, x_n$ modify set
 
-$$A_c = \{A_c \cup \{x_1, x_2, x_3, …, x_n\}\}$$
+$$A_c = A_c \cup \lbrace x_1, x_2, x_3, …, x_n \rbrace$$
 
 3. If in the 2nd step some changes were happened in $A_c$, then repeat the 2nd
 step, otherwise move to the step 4;
@@ -241,10 +241,10 @@ The algorithm in brief:
 1. Create new set $P_r = \emptyset$;
 2. 
     a. For all productions $A \to \alpha$, where $\alpha \to V_T^*$ change set:
-    $$P_r = P_r \cup \{A\}$$
+    $$P_r = P_r \cup \lbrace A \rbrace$$
 
     b. For all productions $B \to \beta$, where $\beta \in (V_T \cup P_r)$ change set:
-    $$Pr = Pr \cup \{B\}$$
+    $$Pr = Pr \cup \lbrace B \rbrace$$
 3. While some changes are met in the set $P_r$, repeat the 2nd step.
 
 ```
