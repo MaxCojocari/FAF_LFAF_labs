@@ -125,30 +125,30 @@ The algorithm resides in the following steps:
 The `removeLambdaProductions` ,ethod resumes all steps described above.
 
 ```
-    public removeLambdaProductions(grammar: Grammar) {
-        let productions: Production[] = grammar.productions;
+public removeLambdaProductions(grammar: Grammar) {
+    let productions: Production[] = grammar.productions;
 
-        while (this.isThereLambdaProduction(productions)) {
-            const [indexToRemove, lambdaProduction] = this.getNextLambdaProduction(productions);
+    while (this.isThereLambdaProduction(productions)) {
+        const [indexToRemove, lambdaProduction] = this.getNextLambdaProduction(productions);
 
-            // remove lambda production found
-            productions =
-                [
-                    ...productions.slice(0, indexToRemove),
-                    ...productions.slice(indexToRemove + 1)
-                ]
+        // remove lambda production found
+        productions =
+            [
+                ...productions.slice(0, indexToRemove),
+                ...productions.slice(indexToRemove + 1)
+            ]
 
-            if (lambdaProduction?.left === grammar.startSymbol) continue;
+        if (lambdaProduction?.left === grammar.startSymbol) continue;
 
-            // replace lambda productions with new productions that generate 
-            // all possible combinations of non-terminals that don't include the empty string
-            productions.forEach(p => {
-                this.substituteAllLambdaCombinations(p, lambdaProduction as Production, productions);
-            });
-        }
-
-        grammar.setProductions(productions);
+        // replace lambda productions with new productions that generate 
+        // all possible combinations of non-terminals that don't include the empty string
+        productions.forEach(p => {
+            this.substituteAllLambdaCombinations(p, lambdaProduction as Production, productions);
+        });
     }
+
+    grammar.setProductions(productions);
+}
 ```
 
 ### Removing unit productions
@@ -162,30 +162,30 @@ The algorithm in brief:
 3. Repeat 2nd step until all unit productions are removed.
 
 ```
-    public removeLambdaProductions(grammar: Grammar) {
-        let productions: Production[] = grammar.productions;
+public removeLambdaProductions(grammar: Grammar) {
+    let productions: Production[] = grammar.productions;
 
-        while (this.isThereLambdaProduction(productions)) {
-            const [indexToRemove, lambdaProduction] = this.getNextLambdaProduction(productions);
+    while (this.isThereLambdaProduction(productions)) {
+        const [indexToRemove, lambdaProduction] = this.getNextLambdaProduction(productions);
 
-            // remove lambda production found
-            productions =
-                [
-                    ...productions.slice(0, indexToRemove),
-                    ...productions.slice(indexToRemove + 1)
-                ]
+        // remove lambda production found
+        productions =
+            [
+                ...productions.slice(0, indexToRemove),
+                ...productions.slice(indexToRemove + 1)
+            ]
 
-            if (lambdaProduction?.left === grammar.startSymbol) continue;
+        if (lambdaProduction?.left === grammar.startSymbol) continue;
 
-            // replace lambda productions with new productions that generate 
-            // all possible combinations of non-terminals that don't include the empty string
-            productions.forEach(p => {
-                this.substituteAllLambdaCombinations(p, lambdaProduction as Production, productions);
-            });
-        }
-
-        grammar.setProductions(productions);
+        // replace lambda productions with new productions that generate 
+        // all possible combinations of non-terminals that don't include the empty string
+        productions.forEach(p => {
+            this.substituteAllLambdaCombinations(p, lambdaProduction as Production, productions);
+        });
     }
+
+    grammar.setProductions(productions);
+}
 ```
 
 ### Removing inaccessible symbols
