@@ -23,17 +23,17 @@ The process of converting a CFG to CNF involves several steps, including removin
 
 This implementation of CNF converter accepts all grammars and modifies them correspondingly. Check unit tests to ensure yourself that everything works fine.
 
-The core implementation ideas for Chomsky Normal Form converter can be found in `./src/grammar/conversion/CNFConverter.ts` directory. The `CNFConverter` class initialises four distinct classes responsible for removal of specific symbols or productions:
+The core implementation for Chomsky Normal Form converter can be found in `./src/grammar/conversion/CNFConverter.ts` directory. The `CNFConverter` class initializes four distinct classes responsible for removal of specific symbols or productions:
     
 - `LambdaProductionRemover` - removes lambda productions;
 - `UnitProductionRemover`- removes all unit productions;
-- `InaccessibleSymbolRemover` - manages al inaccessible symbols and deletes them;
+- `InaccessibleSymbolRemover` - manages all inaccessible symbols and deletes them;
 - `NonProductiveSymbolRemover` - deletes all non productive symbols;
 
-The entire process is focused on `convertToCNF` method which does all the magic regarding the whole process of normalization. It includes
+The entire process is focused on the `convertToCNF` method which does all the magic regarding the process of normalization. It includes
 
-- Verifying the presence of start symbol in right hand side, if yes, adding a new production $S_0 \to S$ where $S_0$ is a new start symbol;
-- Grammar pre-processing before the production normalisation, i.e 
+- Verifying the presence of start symbol in right hand side, and if yes, adding a new production $S_0 \to S$ where $S_0$ is a new start symbol;
+- Grammar pre-processing before the production normalization, i.e 
     - removal of lambda productions;
     - removal of unit productions;
     - removal of inaccessible symbols;
@@ -54,7 +54,7 @@ public convertToCNF(G: Grammar): Grammar {
 }
 ```
 
-There is also an aditional step of sorting productions, which resides in putting productions with $S_0$ first, then $S$, $A$, $B$, ..., in alphabetical order.
+There is also an additional step of sorting productions, which resides in putting productions with $S_0$ first, then $S$, $A$, $B$, ..., in alphabetical order.
 
 The process of grammar preparation before production normalization can be found in `prepareGrammarForCNF` method.
 
@@ -70,7 +70,7 @@ public prepareGrammarForCNF(grammar: Grammar) {
 }
 ```
 
-The `convertProductionsToCNF` method and its helper method `splitProduction` rewrite productions in normalized form $A \to BC$, $A \to a$ or $S \to \varepsilon$.
+The `convertProductionsToCNF` method and its helper method `splitProduction` rewrites productions in normalized form $A \to BC$, $A \to a$ or $S \to \varepsilon$.
 
 ```
 public convertProductionsToCNF(G: Grammar): [string[], Production[]] {
@@ -103,7 +103,7 @@ public convertProductionsToCNF(G: Grammar): [string[], Production[]] {
 
 ### Removing $\lambda$-productions
 
-The `LambdaProductionRemover` class (`./src/grammar/LambdaProductionRemover.ts`) is in charge of removal of all lambda productions and substitution of all possible combinations which may result in new produtions.
+The `LambdaProductionRemover` class (`./src/grammar/LambdaProductionRemover.ts`) is in charge of removal of all lambda productions and substitution of all possible combinations which may result in new productions.
 
 The algorithm resides in the following steps:
 
@@ -112,7 +112,7 @@ The algorithm resides in the following steps:
     
     a. Iterate over all productions for each nonterminal symbol in the grammar;
     
-    b. For each production that includes a lambda nonterminal symbol, create a new production for each possible subset of the original production that excludes the lambda symbol. This means for each occurrence of the lambda nonterminal symbol, we create two new productions: one with the lambda symbol removed and one with the corresponding terminal symbol removed (if it exists);
+    b. For each production that includes a lambda nonterminal symbol, create a new production for each possible subset of the original production that excludes the            lambda symbol. This means for each occurrence of the lambda nonterminal symbol, we create two new productions: one with the lambda symbol removed and one with          the corresponding terminal symbol removed (if it exists);
     
     c. Add the new productions to the grammar.
 
@@ -122,7 +122,7 @@ The algorithm resides in the following steps:
     
     b. Remove any productions that include the lambda symbol.
 
-The `removeLambdaProductions` ,ethod resumes all steps described above.
+The `removeLambdaProductions` method resumes all steps described above.
 
 ```
 public removeLambdaProductions(grammar: Grammar) {
@@ -244,7 +244,7 @@ The algorithm in brief:
     $$P_r = P_r \cup \lbrace A \rbrace$$
 
     b. For all productions $B \to \beta$, where $\beta \in (V_T \cup P_r)$ change set:
-    $$Pr = Pr \cup \lbrace B \rbrace$$
+    $$P_r = P_r \cup \lbrace B \rbrace$$
 3. While some changes are met in the set $P_r$, repeat the 2nd step.
 
 ```
@@ -266,7 +266,7 @@ public removeNonProductiveSymbols(grammar: Grammar) {
 
 ## Testing and debugging
 
-For testing purposes were written a series of unit tests using Jest testing framework which are located in `test/` directory. In order to run all tests on your local machine, use `yarn test`. For running a particular test file, use `yarn test test/cnfConverter/file.test.ts`.
+For testing purposes were written a series of unit tests using Jest testing framework which are located in `test/` directory. In order to run all tests on your local machine, use `yarn test`. For running a particular test file, use `yarn test test/cnfConverter/fileName.test.ts`.
 
 All tests relevant to CNF converter are located in `./test/grammar/cnfConverter` directory. Each test file contains unit tests for classes described in previous sections.
 
@@ -277,7 +277,7 @@ The converted grammar from variant 11 is shown below:
 
 ## Conclusions
 
-In this laboratory work a learned about Chomsky Normal Form (CNF) and created the corresponding converter based on CNF rules. CNF is a standard form of context-free grammars (CFGs) that has proven to be very useful in various grammar processing tasks. By transforming CFGs into CNF, we can simplify various language modeling algorithms and make them more efficient and accurate.
+In this laboratory work I learned about Chomsky Normal Form (CNF) and created the corresponding converter based on CNF rules. CNF is a standard form of context-free grammars (CFGs) that has proven to be very useful in various grammar processing tasks. By transforming CFGs into CNF, we can simplify various language modeling algorithms and make them more efficient and accurate.
 
 Through the process of designing the system for converting CFGs to CNF, I have learned various techniques, such as removing lambda productions, removing unit productions, and transforming productions with more than two nonterminal symbols. While this process can be complex and time-consuming, the resulting CNF grammar can be more efficient and robust for specific applications.
 
