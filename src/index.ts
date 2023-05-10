@@ -14,5 +14,6 @@ export * from "./grammar/InaccessibleSymbolRemover";
 export * from "./grammar/NonProductiveSymbolRemover";
 export * from "./grammar/conversion/CNFConverter";
 export * from "./lexer/Lexer";
+export * from "./parser/Parser";
 export * from "./token/Token";
 export * from "./token/TokenStream";

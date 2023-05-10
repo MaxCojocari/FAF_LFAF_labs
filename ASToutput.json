@@ -1,0 +1,108 @@
+{
+  "type": "<expr>",
+  "children": [
+    {
+      "type": "<expr>",
+      "children": [
+        {
+          "type": "<term>",
+          "children": [
+            {
+              "type": "<factor>",
+              "children": [
+                {
+                  "type": "<digit>",
+                  "children": [
+                    {
+                      "type": "INTLITERAL",
+                      "value": "2"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "OPERATOR",
+      "value": "/"
+    },
+    {
+      "type": "<expr>",
+      "children": [
+        {
+          "type": "<term>",
+          "children": [
+            {
+              "type": "<factor>",
+              "children": [
+                {
+                  "type": "SEPARATOR",
+                  "value": ")"
+                },
+                {
+                  "type": "<expr>",
+                  "children": [
+                    {
+                      "type": "<term>",
+                      "children": [
+                        {
+                          "type": "<factor>",
+                          "children": [
+                            {
+                              "type": "<letter>",
+                              "children": [
+                                {
+                                  "type": "IDENTIFIER",
+                                  "value": "b"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "OPERATOR",
+                      "value": "+"
+                    },
+                    {
+                      "type": "<expr>",
+                      "children": [
+                        {
+                          "type": "<term>",
+                          "children": [
+                            {
+                              "type": "<factor>",
+                              "children": [
+                                {
+                                  "type": "<letter>",
+                                  "children": [
+                                    {
+                                      "type": "IDENTIFIER",
+                                      "value": "a"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "SEPARATOR",
+                  "value": "("
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

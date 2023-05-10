@@ -33,4 +33,8 @@ export class TokenStream {
   public pushToken(token: Token): void {
     this.tokens.push(token);
   }
+
+  public getTokens(): Token[] {
+    return this.tokens;
+  }
 }
