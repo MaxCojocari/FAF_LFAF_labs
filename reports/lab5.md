@@ -27,7 +27,7 @@ Parsers can be categorized into two main types:
 
 In this laboratory work was implemented a **shift-reduce** parser. It is a type of bottom-up parser commonly used in compiler design and syntax analysis. It belongs to the class of LR parsers, which are powerful and efficient for handling a broad range of programming languages [1][2].
 
-The implementation of the parser can be located in the `Parser` class, which resides in the `./src/parser/Parser.ts` directory. The core functionality of the parser is encapsulated within the `parse` method. When invoked, this method takes the token stream as input and performs the parsing process. All grammar rules are preset in the `Parser` class constructor.
+The implementation of the parser is located in the `Parser` class, which resides in the `./src/parser/Parser.ts` directory. The core functionality of the parser is encapsulated within the `parse` method. When invoked, this method takes the token stream as input and performs the parsing process. All grammar rules are preset in the `Parser` class constructor.
 
 ```
 public parse(tokenStream: TokenStream): ParserResponse {
@@ -47,7 +47,7 @@ public parse(tokenStream: TokenStream): ParserResponse {
 
     // otherwise 'reject'
     return { accepted: false, AST: undefined };
-    }
+}
 ```
 
 The shift-reduce parsing algorithm proceeds by repeatedly performing *shift* and *reduce* actions until it reaches the end of the input and successfully constructs a parse tree or encounters a syntax error. 
